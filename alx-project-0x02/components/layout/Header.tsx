@@ -12,6 +12,12 @@ const Header: React.FC = () => {
         About
       </Link>
       <Link href="/home">Home Page</Link>
+      <Link href="/posts" passHref legacyBehavior>
+          <a className="hover:text-blue-500">Posts</a>
+        </Link>
+        <Link href="/users" style={{ marginRight: '1rem' }}>
+        Users
+      </Link>
     </nav>
   );
 };
