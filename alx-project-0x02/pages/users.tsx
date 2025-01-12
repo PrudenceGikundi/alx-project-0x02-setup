@@ -1,8 +1,8 @@
 // pages/users.tsx
 import React from 'react';
 import { GetStaticProps } from 'next';
-import UserCard from '@/components/common/UserCard'; 
-import { UserProps } from '@/interfaces'; 
+import UserCard from '@/components/common/UserCard'; // Adjust according to your project structure
+import { UserProps } from '@/interfaces'; // Make sure this path is correct
 
 interface UsersPageProps {
   users: UserProps[];
@@ -15,6 +15,7 @@ const UsersPage: React.FC<UsersPageProps> = ({ users }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {users.map((user) => (
           <UserCard
+            key={user.id}
             id={user.id}
             name={user.name}
             email={user.email}
@@ -26,13 +27,12 @@ const UsersPage: React.FC<UsersPageProps> = ({ users }) => {
   );
 };
 
-// Implementing getStaticProps
+// Correctly implement getStaticProps to fetch users data
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/users');
     const data = await response.json();
 
-    // Mapping the data to fit the UserProps interface
     const users: UserProps[] = data.map((user: any) => ({
       id: user.id,
       name: user.name,
@@ -46,14 +46,14 @@ export const getStaticProps: GetStaticProps = async () => {
 
     return {
       props: {
-        users, // Passing the data to the component as props
+        users, // Passing users data to the component
       },
     };
   } catch (error) {
     console.error('Error fetching users:', error);
     return {
       props: {
-        users: [], // If the fetch fails, return an empty array
+        users: [], // Return an empty array if there's an error
       },
     };
   }
