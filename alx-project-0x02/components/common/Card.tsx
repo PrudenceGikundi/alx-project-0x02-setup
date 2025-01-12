@@ -1,11 +1,11 @@
 import React from 'react';
-import {type CardProps } from '../../interfaces';
+import { type CardProps } from '../../interfaces';
 
 const Card: React.FC<CardProps> = ({ title, content }) => {
   return (
-    <div style={{ border: '1px solid #ddd', borderRadius: '8px', padding: '16px', margin: '8px', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }}>
-      <h2>{title}</h2>
-      <p>{content}</p>
+    <div className="border border-gray-300 rounded-lg p-4 m-2 shadow-md">
+      <h2 className="text-xl font-semibold">{title}</h2>
+      <p className="text-gray-700">{content}</p>
     </div>
   );
 };
