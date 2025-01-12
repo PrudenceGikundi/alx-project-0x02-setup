@@ -1,16 +1,16 @@
 // components/common/UserCard.tsx
-import React from 'react';
-import { UserProps } from '@/interfaces';
 
-const UserCard: React.FC<UserProps> = ({ name, email, address }) => {
+import React from 'react';
+import { UserProps } from '../../interfaces';
+
+const UserCard: React.FC<{ user: UserProps }> = ({ user }) => {
   return (
-    <div className="p-4 border rounded-md shadow-md bg-white">
-      <h2 className="font-semibold text-xl">{name}</h2>
-      <p className="text-gray-500">{email}</p>
-      <div className="mt-2 text-sm text-gray-600">
-        <p>{address.street}</p>
-        <p>{address.city}, {address.zipcode}</p>
-      </div>
+    <div className="border border-gray-300 rounded-lg p-4 m-2 shadow-md">
+      <h2 className="text-xl font-semibold">{user.name}</h2>
+      <p className="text-gray-700">Email: {user.email}</p>
+      <p className="text-gray-700">
+        Address: {user.address.street}, {user.address.city}, {user.address.zipcode}
+      </p>
     </div>
   );
 };
